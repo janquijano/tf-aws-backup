@@ -5,7 +5,7 @@ module "lambda_function" {
   version = "2.34.1"
 
   publish                   = false
-  function_name             = "nutrien-${var.environment}-${each.value.function_suffix}"
+  function_name             = "${var.environment}-${each.value.function_suffix}"
   handler                   = each.value.datadog_enabled == false ? each.value.handler : substr(each.value.runtime_version, 0, 6) == "python" ? "datadog_lambda.handler.handler" : "/opt/nodejs/node_modules/datadog-lambda-js/handler.handler"
   runtime                   = each.value.runtime_version
   memory_size               = each.value.memory_size
@@ -34,7 +34,7 @@ module "lambda_function" {
   # environment variables to pass to lambda function
   environment_variables     = merge({
     "DD_ENV" = each.value.datadog_enabled == true ? var.environment : null
-    "DD_SERVICE" = each.value.datadog_enabled == true ? "nutrien-${var.environment}-${each.value.function_suffix}" : null
+    "DD_SERVICE" = each.value.datadog_enabled == true ? "${var.environment}-${each.value.function_suffix}" : null
     "DD_LAMBDA_HANDLER" = each.value.datadog_enabled == true ? each.value.handler : null
     "DD_SITE" = each.value.datadog_enabled == true ? "datadoghq.com" : null
     "DD_API_KEY_SECRET_ARN" = each.value.datadog_enabled == true ? data.aws_secretsmanager_secret.datadog.arn : null

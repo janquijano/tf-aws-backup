@@ -1,6 +1,6 @@
 # Lambda common policy
 data "aws_iam_policy" "common_lambda_policy" {
-  name = "nutrien-${var.environment}-lambda-common-policy"
+  name = "${var.environment}-lambda-common-policy"
 }
 
 resource "aws_iam_role_policy_attachment" "backup" {

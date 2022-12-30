@@ -3,7 +3,7 @@ data "aws_region" "current" {}
 
 # Get Notifications API Credentials from secrets manager
 data "aws_secretsmanager_secret" "notifications" {
-  name                 = "nutrien-${var.environment}-platform-operations-credentials"
+  name                 = "${var.environment}-platform-operations-credentials"
 }
 
 data "aws_secretsmanager_secret_version" "notifications" {
@@ -11,7 +11,7 @@ data "aws_secretsmanager_secret_version" "notifications" {
 }
 
 data "aws_secretsmanager_secret" "datadog" {
-  name = "nutrien-${var.environment}-datadog-apikey"
+  name = "${var.environment}-datadog-apikey"
 }
 
 data "archive_file" "init" {

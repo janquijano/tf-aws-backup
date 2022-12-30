@@ -35,8 +35,7 @@ provider "aws" {
 }
 
 module "backup" {
-  source = "app.terraform.io/Nutrien/aws-backup/digitalau"
-  # version     = "x.x.x"
+  source = "./module/terraform-aws-backup"
 
   namespace  = var.namespace
   stage      = var.stage
