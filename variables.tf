@@ -4,6 +4,12 @@ variable "region" {
   default     = "ap-southeast-2"
 }
 
+variable "environment" {
+  type        = string
+  description = "Environment name, e.g. dev, staging, prod"
+  default     = "dev"
+}
+
 variable "not_resources" {
   type        = list(string)
   description = "An array of strings that either contain Amazon Resource Names (ARNs) or match patterns of resources to exclude from a backup plan"
@@ -47,23 +53,36 @@ variable "backup_plan_config" {
 
 variable "lambda_function_config" {}
 
-variable "environment" {
-  type        = string
-  description = "Environment name, e.g. dev, staging, prod"
-  default     = "sandbox"
-}
-
 variable "lambda_code_bucket" {
   type        = string
   description = "Bucket name where lambda conde is stored"
   default     = "my-lambda-code-store"
 }
 
-####################
-# Global variables #
-####################
-variable "lambda_insights_layer_version" {}
-variable "dd_layer_version_python" {}
-variable "dd_layer_version_nodejs" {}
-variable "dd_extension_version" {}
-####################
+###############################################################
+# Datadog variables                                           #
+# These are varibables used for Lambda function Observability #
+###############################################################
+variable "lambda_insights_layer_version" {
+  type        = string
+  description = "Lambda layer version for CloudWatch Lambda Insights"
+  default     = "21"
+}
+
+variable "dd_layer_version_python" {
+  type        = string
+  description = "Datadog Lambda layer version for Python"
+  default     = "64"
+}
+
+variable "dd_layer_version_nodejs" {
+  type        = string
+  description = "Datadog Lambda layer version for NodeJS"
+  default     = "85"
+}
+
+variable "dd_extension_version" {
+  type        = string
+  description = "Datadog Lambda Extension version"
+  default     = "34"
+}

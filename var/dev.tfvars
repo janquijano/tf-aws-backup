@@ -14,7 +14,7 @@ backup_plan_config = {
         ]
         rules            = [
             {
-                name              = "750258991887-daily-ec2"
+                name              = "dev-daily-ec2"
                 schedule          = "cron(0 12 * * ? *)"
                 start_window      = 60
                 completion_window = 120
@@ -41,7 +41,7 @@ backup_plan_config = {
         ]
         rules            = [
             {
-                name              = "750258991887-daily-rds"
+                name              = "dev-daily-rds"
                 schedule          = "cron(0 14 * * ? *)"
                 start_window      = 60
                 completion_window = 180
@@ -69,7 +69,7 @@ backup_plan_config = {
     #    ]
     #    rules            = [
     #        {
-    #            name              = "750258991887-daily-s3"
+    #            name              = "dev-daily-s3"
     #            schedule          = "cron(0 15 * * ? *)"
     #            start_window      = 60
     #            completion_window = 180
