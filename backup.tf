@@ -1,7 +1,6 @@
 
 module "backup" {
-  source  = "app.terraform.io/Nutrien/aws-backup/digitalau"
-  version = "0.0.11"
+  source  = "./modules/terraform-aws-backup"
 
   plan_name_suffix = "daily"
   backup_resources = ["*"]
@@ -34,8 +33,7 @@ module "backup" {
 
 module "backup_plan" {
   for_each = var.backup_plan_config
-  source  = "app.terraform.io/Nutrien/aws-backup/digitalau"
-  version = "0.0.11"
+  source  = "./modules/terraform-aws-backup"
 
   vault_enabled    = each.value.vault_enabled #false
   iam_role_enabled = each.value.iam_role_enabled #false
